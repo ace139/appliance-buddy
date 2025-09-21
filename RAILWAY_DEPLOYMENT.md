@@ -23,15 +23,16 @@ This guide will help you deploy the Appliance Buddy application to Railway.
    ```
    NODE_ENV=production
    PORT=3000
-   DATABASE_URL=[Railway will provide this when you add a PostgreSQL service]
+   DATABASE_URL=appliance-buddy.db
    JWT_SECRET=[Generate a secure 32+ character string]
    CORS_ORIGIN=*
    ```
 
-3. **Add PostgreSQL Database**
-   - In your Railway project, click "Add Service"
-   - Select "PostgreSQL"
-   - Railway will automatically provide the DATABASE_URL
+3. **Database Setup**
+   - The application uses SQLite database which is included in the deployment
+   - No external database service needed
+   - Database file will be created automatically on first run
+   - Migrations run automatically on startup
 
 4. **Deploy**
    - Railway will automatically detect the configuration and deploy
@@ -63,11 +64,12 @@ The following files have been created for Railway deployment:
 
 ## Database Setup
 
-Railway will automatically provide a PostgreSQL database. The app will:
+The application uses SQLite as its database, which simplifies deployment:
 
-1. Connect using the provided `DATABASE_URL`
-2. Run migrations on startup
-3. Use SQLite locally for development
+1. **No External Database Required**: SQLite runs as an embedded database
+2. **Automatic Migration**: Database migrations run automatically on startup
+3. **Data Persistence**: Database file persists with Railway's volume mounting
+4. **Development/Production Parity**: Same database technology in all environments
 
 ## Monitoring
 
@@ -81,7 +83,7 @@ Railway will automatically provide a PostgreSQL database. The app will:
 # Required
 NODE_ENV=production
 PORT=3000
-DATABASE_URL=postgresql://... # Provided by Railway
+DATABASE_URL=appliance-buddy.db
 JWT_SECRET=your-super-secure-jwt-secret-minimum-32-characters
 
 # Optional
@@ -91,9 +93,10 @@ CORS_ORIGIN=* # Or your frontend domain
 ## Troubleshooting
 
 1. **Build Failures**: Check the build logs in Railway dashboard
-2. **Database Issues**: Ensure DATABASE_URL is correctly set
-3. **Port Issues**: Make sure PORT environment variable is set to 3000
-4. **CORS Issues**: Update CORS_ORIGIN to match your frontend domain
+2. **Native Module Issues**: Ensure Node.js 20+ is used for better-sqlite3 compatibility
+3. **Database Issues**: SQLite database will be created automatically
+4. **Port Issues**: Make sure PORT environment variable is set to 3000
+5. **CORS Issues**: Update CORS_ORIGIN to match your frontend domain
 
 ## Local Testing
 

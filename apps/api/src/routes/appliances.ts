@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { ApplianceController } from '../controllers/applianceController';
 import { validateAppliance, validateApplianceUpdate } from '../middleware/validation';
 
-const router = Router();
+const router: Router = Router();
 const applianceController = new ApplianceController();
 
 // GET /api/appliances - Get all appliances with optional filtering

@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { MaintenanceController } from '../controllers/maintenanceController';
 import { validateMaintenanceTask, validateMaintenanceTaskUpdate } from '../middleware/validation';
 
-const router = Router();
+const router: Router = Router();
 const maintenanceController = new MaintenanceController();
 
 // GET /api/maintenance - Get all maintenance tasks with optional filtering

@@ -6,18 +6,18 @@ nixPkgs = ["nodejs-20_x", "python3", "sqlite"]
 
 [phases.install]
 cmds = [
-  "cd appliance-buddy-backend",
-  "npm ci --omit=dev"
+  "corepack enable",
+  "corepack prepare pnpm@9.12.3 --activate",
+  "pnpm install --frozen-lockfile"
 ]
 
 [phases.build]
 cmds = [
-  "cd appliance-buddy-backend", 
-  "npm run build"
+  "pnpm --filter appliance-buddy-api run build"
 ]
 
 [start]
-cmd = "cd appliance-buddy-backend && npm start"
+cmd = "pnpm --filter appliance-buddy-api run start"
 
 [healthcheck]
 path = "/health"

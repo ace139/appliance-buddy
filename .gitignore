@@ -10,6 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+apps/*/node_modules
+apps/*/dist
+.turbo
 *.local
 
 # Editor directories and files

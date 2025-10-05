@@ -2,13 +2,16 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "cd appliance-buddy-backend && npm ci && npm run build",
+    "buildCommand": "pnpm install --frozen-lockfile && pnpm --filter appliance-buddy-api run build",
     "watchPatterns": [
-      "appliance-buddy-backend/**"
+      "apps/api/**",
+      "package.json",
+      "pnpm-lock.yaml",
+      "turbo.json"
     ]
   },
   "deploy": {
-    "startCommand": "cd appliance-buddy-backend && npm start",
+    "startCommand": "pnpm --filter appliance-buddy-api run start",
     "healthcheckPath": "/health",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",

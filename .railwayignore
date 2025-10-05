@@ -1,11 +1,5 @@
-# Ignore frontend files for backend deployment
-src/
-public/
-index.html
-vite.config.ts
-tailwind.config.ts
-postcss.config.js
-components.json
+# Ignore frontend workspace for backend deployment
+apps/web/
 
 # Ignore dev dependencies and cache
 node_modules/
@@ -26,6 +20,8 @@ Thumbs.db
 *.spec.*
 __tests__/
 coverage/
+
+.turbo/
 
 # Ignore build artifacts from frontend
 dist/
